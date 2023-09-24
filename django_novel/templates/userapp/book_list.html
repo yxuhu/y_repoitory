@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Online-我的书架
+{% endblock %}
+
+{% block lib %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/book_list.css' %}"/>
+{% endblock %}
+
+{% block main %}
+<p>我的书架:</p>
+   <div class="book_list">
+   	<div>
+   		<ul>
+   			{% for c in collects %}
+   			<li id="li{{c.id}}">
+   				<a href="{% url 'mainapp:book' c.novel.id  %}"><img src="/media/{{ c.novel.img }}" alt="" class="left img-thumbnail" style="height: 200px;"></a>
+   				<div class="info" class="right">
+   					<a href="{% url 'mainapp:book' c.novel.id  %}"><p>{{ c.novel.name }}</p></a>
+   					<p>
+   						<a href=""><img src="{% static 'img/home-icon-author.png' %}" alt="" ></a>
+   						<i>|</i>
+   						<a href="">{{ c.novel.author }}</a>
+   						<i>|</i>
+   						<a href="">{{ c.novel.tag }}</a>
+   						<i>|</i>
+   						{% if c.novel.status == '0' %}
+   						<a href="">已完结</a>
+   						{% else %}
+   						<a href="">连载中</a>
+   						{% endif %}
+   						<i>|</i>
+   						<a href="">{{ c.novel.counter }}次浏览</a>
+   					</p>
+   					<p class="now">最近阅读</p>
+   					{% if c.novel.novel.last %}
+   					<p><span>最近更新:第{{c.novel.novel.last.num}}章:{{ c.novel.novel.last.name }} 时间:{{ c.novel.novel.last.create_time }} </span></p>
+   					{% else %}
+   					<p>暂无最近更新</p>
+   					{% endif %}
+   				</div>
+   				<div class="clear"></div>
+				<button type="button" class="deletebtn" id="c{{c.id}}">删除</button>
+   			</li>
+   			{% endfor %}
+			<script type="text/javascript">
+				let deletebtns =document.getElementsByClassName("deletebtn");
+				for(let i=0;i<deletebtns.length;i++){
+					deletebtns[i].onclick=function(){
+						let id = deletebtns[i].id;
+						id = id.substring(1,id.length)
+						console.log("你点击了",id)
+						
+						
+						$.ajax({
+							url:"/operateapp/deletecollect/"+id+"/",
+							success:function(data){
+								console.log(data)
+								if(data.state == 1){
+									document.getElementById("li"+id).remove();
+								}
+								else{
+									alert("收藏不存在")
+								}
+							}
+						})
+						
+					}
+					
+				}	
+			</script>
+   		</ul>
+   	</div>
+	</div>
+	
+	 
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Online-首页
+{% endblock %}
+
+
+{% block lib %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" />
+{% endblock %}
+{% block main %}
+
+<div class='first-section'>
+	<div class="first-section-left left">
+		<div class="first-top">
+			<img src="/media/{{ first_novel.img }}" class="img-name" alt="">
+			<div class="top-right ">
+				<a href="{% url 'mainapp:book' first_novel.id  %}" class="first-title">{{first_novel.name}}</a>
+				<p class="first-author">
+					<a href="#"><span><img src="{% static 'img/home-icon-author.png' %}" alt="">{{ first_novel.author }}</span></a><i>|</i><a
+						href="#"><span>{{ first_novel.tag }}</span></a> <i>|</i>
+					{% if first_novel.status == '0' %}
+					<a href=""><span>已完结</span></a>
+					{% else %}
+					<a href=""><span>连载中</span></a>
+					{% endif %}
+				</p>
+				<p class="first-des">
+					{%  autoescape off  %}
+					{{ first_novel.info }}
+					{%  endautoescape %}
+				</p>
+				<div class="img_list" style="margin-top: 60px;">
+					{% for img in imgs %}
+					<a href="{% url 'mainapp:book' img.id  %}"><img src="/media/{{ img.img }}"></a>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="first-bottom">
+			<img src="{% static 'img/qianyue.jpg' %}">
+		</div>
+
+	</div>
+	<div class="first-section-right right">
+		<p class="commonTitle">本周强推</p>
+		<ul class="book_list">
+			{% for nl in novel_list  %}
+			<li>
+				<a href="{% url 'mainapp:book' nl.id  %}"><span>[{{ nl.tag }}]</span></a>
+				<a href="{% url 'mainapp:book' nl.id  %}"><span>{{ nl.name }}</span></a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="Adver-board">
+	<a href="#" target="_blank">
+		<img src="{% static 'img/yi.jpg' %}" alt="">
+	</a>
+</div>
+<div class="second-section">
+	<div class="second-section-left left">
+		<div class="common-section-title">
+			<span class="titleSize  left">
+				<p>主编力荐</p>
+			</span>
+		</div>
+		<div class="second-section-booklist">
+			<ul class="second-section-ul ">
+				{% for img in imgs %}
+				<li>
+					<div class="Recommend-book-cover">
+						<div class="commom-description">
+							<a href="{% url 'mainapp:book' img.id  %}" class="Scover"> <img class=" midImageSize" src="/media/{{ img.img }}"
+									alt=""></a>
+							<div class="des-right">
+								<a class="title booktitleSize titlecolor texthide" href="{% url 'mainapp:book' img.id  %}">{{ img.name }}</a>
+								<p class="d-author listcolor">
+									<a href="#"><img src="{% static 'img/home-icon-author.png' %}"
+											alt="{% url 'mainapp:book' img.id  %}">{{ img.author }}</a><i>|</i><a href="">{{ img.tag }}</a><i>|</i>
+
+									{% if img.status == '0' %}
+									<a href="#">已完结</a>
+									{% else %}
+									<a href="#">连载中</a>
+									{% endif %}
+								</p>
+								<p class="CS-descript authorSize listcolor">
+									{%  autoescape off  %}
+									{{ img.info }}
+									{%  endautoescape %}
+								</p>
+							</div>
+						</div>
+					</div>
+				</li>
+				{% endfor  %}
+			</ul>
+
+		</div>
+		<div class="second-section-bottom">
+
+			<ul style="margin-left: 75px;">
+				{% for b in bottom_list %}
+				<li>
+					<p class="authorSize ">
+						<a href="{% url 'mainapp:book' b.id  %} "  class="type listcolor">{{ b.tag }}</a>
+						<a href="{% url 'mainapp:book' b.id  %}" class="h-des texthide titleColor">{{ b.name }}</a>
+					</p>
+				</li>
+				{% endfor %}
+			</ul>
+
+		</div>
+	</div>
+	<div class="second-section-right right">
+		
+	 
+	</div>
+	<div class="clear"></div>
+</div>
+
+{% endblock %}

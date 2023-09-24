@@ -1,0 +1,31 @@
+<div class="talking">
+	  {% include 'mine/talking_list.html' %}
+	<div class="addtalking">
+		{% if user.is_anonymous  %}
+		<a href="{% url 'userapp:login' %}?next=/book/{{ current_novel.id }}">评论</a>
+		{% else %}
+		<a class="btn btn-info" id="addtalkingbtn" role="button">评论</a>
+		<div id="addtalkingform" style="display: none;">
+			<form action="{% url 'operateapp:addtalking' current_novel.id  %}" method="post">
+				<div class="text-danger">
+					{% for msg in messages %}
+					{{ msg }}
+					{% endfor%}
+				</div>
+				{% csrf_token %}
+				{{ tf.content  }}
+				<button type="submit" class="btn btn-primary btn-block">提交</button>
+			</form>
+		</div>
+		{% endif %}
+		<!-- 问题表单的显示 -->
+		<script type="text/javascript">
+			let addtalkingbtn = document.getElementById("addtalkingbtn");
+			let addquestionform = document.getElementById("addtalkingform")
+			addtalkingbtn.onclick = function() {
+				addtalkingbtn.style.display = "none"
+				addquestionform.style.display = "block"
+			}
+		</script>
+	</div>
+</div>

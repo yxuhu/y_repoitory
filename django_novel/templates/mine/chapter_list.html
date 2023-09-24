@@ -1,0 +1,5 @@
+<ul>
+	{% for c in current_novel.novel.all %}
+	<a href="{% url 'mainapp:chapter' c.id  %}"><li><span>第{{ c.num }}章</span>:<span>{{c.name}}</span><i>|</i><span>{{c.create_time}}</span></li></a>
+	{% endfor %}
+</ul>

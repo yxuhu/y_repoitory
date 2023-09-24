@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Online-热门
+{% endblock %}
+
+
+{% block lib %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/chapter.css' %}" />
+{% endblock %}
+{% block main %}
+
+ 
+<div class="readWrap">
+<div class="articleContent">
+	<p class="articleName">《{{ chap.novel.name }}》</p>
+	<p class="articalCharpter">第{{ chap.num }}章{{ chap.name }}</p>
+	<p class="acticalAuthor">
+		<span>作者：{{ chap.novel.author }} </span> <span>分类:{{ chap.novel.tag.title }}</span> <span>更新时间：{{ chap.create_time }}</span>
+	</p>
+</div>
+</div>
+<div class="content">
+	<p>
+		{{ chap.content |safe}}
+	</p>
+</div>
+<!-- 上下章的实现 -->
+<div class="articlenav">	
+			{% ifnotequal chap chap.novel.novel.first %}
+			<a href="{% url 'mainapp:chapter' chap.prev.id %}" class="left">上一篇 {{ chap.prev.name }} </a>
+			{% endifnotequal %}
+			{% ifnotequal chap chap.novel.novel.last %}
+			<a href="{% url 'mainapp:chapter' chap.next.id %}" class="right">下一篇 {{ chap.next.name }} </a>
+			{% endifnotequal %}
+			<div class="clear"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Online-登录与注册
+{% endblock %}
+
+
+{% block lib %}
+<link rel="stylesheet" href="{% static 'css/login_regist.css' %}">
+{% endblock %}
+{% block main %}
+
+<div class="fromcontent">
+	<!-- Nav tabs -->
+	<ul class="nav nav-tabs" role="tablist">
+		{% if page_type == 'login' %}
+		<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">登录</a>
+		</li>
+		<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">注册</a></li>
+		{% else %}
+		<li role="presentation"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">登录</a>
+		</li>
+		<li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab"
+				data-toggle="tab">注册</a></li>
+		{% endif %}
+	</ul>
+
+	<!-- Tab panes -->
+	<div class="tab-content">
+		{%  if page_type == 'login' %}
+		<div role="tabpanel" class="tab-pane active" id="home">
+			{% else %}
+			<div role="tabpanel" class="tab-pane" id="home">
+				{% endif %}
+				{% if next %}
+				<form method="post" action="{% url 'userapp:login' %}?next={{next}}">
+					{% else %}
+					<form method="post" action="{% url 'userapp:login' %}">
+						{% endif %}
+						<div class="text-danger">
+							{% for msg in messages %}
+							{{ msg }}
+							{% endfor%}
+						</div>
+						{% csrf_token %}
+						<div class="form-group">
+							{{ lf.email }}
+						</div>
+						<div class="form-group">
+							{{ lf.password }}
+						</div>
+						<div class="form-group">
+							{{ lf.captcha }}
+						</div>
+						<button type="submit" class="btn btn-primary btn-block">登录</button>
+						<p style="color: red;">有问题请联系警察局 电话:110</p>
+					</form>
+			</div>
+			{%  if page_type == 'login' %}
+			<div role="tabpanel" class="tab-pane" id="profile">
+				{% else %}
+				<div role="tabpanel" class="tab-pane active" id="profile">
+					{% endif %}
+					<form method="post" action="{% url 'userapp:regist' %}">
+						<div class="text-danger">
+							{% for msg in messages %}
+							{{ msg }}
+							{% endfor%}
+						</div>
+						{% csrf_token %}
+						<div class="form-group">
+							{{ rf.email }}
+						</div>
+						<div class="form-group">
+							{{ rf.username }}
+						</div>
+						<div class="form-group">
+							{{ rf.password1 }}
+						</div>
+						<div class="form-group">
+							{{ rf.password2 }}
+						</div>
+						<div class="form-group">
+							{{ rf.captcha }}
+						</div>
+						<button type="submit" class="btn btn-primary btn-block">注册</button>
+						<p style="color: red;">有问题请联系警察局 电话:110</p>
+
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	window.onload = function() {
+		$('.captcha').click(function() {
+			$.getJSON("/captcha/refresh/", function(result) {
+				$('.captcha').attr('src', result['image_url']);
+				$('#id_captcha_0').val(result['key'])
+			});
+		});
+	}
+</script>
+{% endblock %}

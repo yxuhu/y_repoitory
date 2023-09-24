@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Online-修改个人信息
+{% endblock %}
+{% block lib %}
+<link rel="stylesheet" href="{% static 'css/login_regist.css' %}">
+{% endblock %}
+{% block main %}
+<div class="fromcontent1">
+	<div>
+
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs" role="tablist">
+			{% if page_type == "account" %}
+			<li role="presentation" class="active"><a href="#account" aria-controls="account" role="tab"data-toggle="tab">账号</a></li>
+			<li role="presentation"><a href="#nickname" aria-controls="nickname" role="tab" data-toggle="tab">昵称</a></li>
+			<li role="presentation"><a href="#password" aria-controls="password" role="tab" data-toggle="tab">密码</a></li>
+			<li role="presentation"><a href="#head" aria-controls="head" role="tab" data-toggle="tab">头像</a></li>
+			{% elif page_type == "nickname" %}
+			<li role="presentation" ><a href="#account" aria-controls="account" role="tab"data-toggle="tab">账号</a></li>
+			<li role="presentation" class="active"><a href="#nickname" aria-controls="nickname" role="tab" data-toggle="tab">昵称</a></li>
+			<li role="presentation"><a href="#password" aria-controls="password" role="tab" data-toggle="tab">密码</a></li>
+			<li role="presentation"><a href="#head" aria-controls="head" role="tab" data-toggle="tab">头像</a></li>
+			{% elif page_type == "password" %}
+			<li role="presentation" ><a href="#account" aria-controls="account" role="tab"data-toggle="tab">账号</a></li>
+			<li role="presentation"><a href="#nickname" aria-controls="nickname" role="tab" data-toggle="tab">昵称</a></li>
+			<li role="presentation" class="active"><a href="#password" aria-controls="password" role="tab" data-toggle="tab">密码</a></li>
+			<li role="presentation"><a href="#head" aria-controls="head" role="tab" data-toggle="tab">头像</a></li>
+			{% else %}
+			<li role="presentation" ><a href="#account" aria-controls="account" role="tab"data-toggle="tab">账号</a></li>
+			<li role="presentation"><a href="#nickname" aria-controls="nickname" role="tab" data-toggle="tab">昵称</a></li>
+			<li role="presentation" ><a href="#password" aria-controls="password" role="tab" data-toggle="tab">密码</a></li>
+			<li role="presentation" class="active"><a href="#head" aria-controls="head" role="tab" data-toggle="tab">头像</a></li>
+		    {% endif %}
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content">
+			{% if page_type == "account" %}
+			<div role="tabpanel" class="tab-pane active" id="account">
+			{% else %}
+			<div role="tabpanel" class="tab-pane " id="account">
+			{% endif %}
+				<form method="post" action="?type=account">
+					{% csrf_token %}
+					<div class="form-group">
+						{% for msg in messages %}
+						<span class="text-danger">
+							{{ msg }}
+						</span>
+						{% endfor%}
+					</div>
+					{{ af.account }}
+					<button type="submit" class="btn btn-primary btn-block">更新</button>
+				</form>
+			</div>
+			{% if page_type == "nickname" %}
+			<div role="tabpanel" class="tab-pane active" id="nickname">
+			{% else %}
+			<div role="tabpanel" class="tab-pane " id="nickname">
+			{% endif %}
+				<form method="post" action="?type=nickname">
+					{% csrf_token %}
+					<div class="form-group">
+						{% for msg in messages %}
+						<span class="text-danger">
+							{{ msg }}
+						</span>
+						{% endfor%}
+					</div>
+					{{ nf.username }}
+					<button type="submit" class="btn btn-primary btn-block">更新</button>
+				</form>
+			</div>
+			{% if page_type == "password" %}
+			<div role="tabpanel" class="tab-pane active" id="password">
+			{% else %}
+			<div role="tabpanel" class="tab-pane " id="password">
+			{% endif %}
+				<form method="post" action="?type=password">
+					{% csrf_token %}
+					<div class="form-group">
+						{% for msg in messages %}
+						<span class="text-danger">
+							{{ msg }}
+						</span>
+						{% endfor%}
+					</div>
+					{{ pf.password }}
+					{{ pf.newpwd1}}
+					{{ pf.newpwd2}}
+					<button type="submit" class="btn btn-primary btn-block">更新</button>
+				</form>
+			</div>
+			{% if page_type == "head" %}
+			<div role="tabpanel" class="tab-pane active" id="head">
+			{% else %}
+			<div role="tabpanel" class="tab-pane " id="head">
+			{% endif %}
+				<form method="post" action="?type=head" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div class="form-group">
+						{% for msg in messages %}
+						<span class="text-danger">
+							{{ msg }}
+						</span>
+						{% endfor %}
+					</div>
+					<div style="text-align: center;position:relative">
+						<img class="img-circle" style="width: 100px;height: 100px;" src="/media/{{user.head}}" alt=""
+							style="width: 400px;height: 400px;">
+					</div>
+					{{ hf.head }}
+					<button type="submit" class="btn btn-primary btn-block">更新</button>
+				</form>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+<!-- 显示讨论的列表 -->
+<div class="talking_list">
+	<!-- 讨论 -->
+	{% for t in talkings %}
+	<div class="panel-body">
+		<div> <img width="40px" height="40px" src="/media/{{ t.user.head }}/">
+			{{ t.user.username }}
+		</div>
+		{{ t.content|safe }}
+		<!-- 回复功能 -->
+		<div class="answers" style="padding-left: 50px;">
+			<div class="answers">
+				{% for a in t.answers.all %}
+				<div>
+					<img style="width: 32px; height: 32px;" src="/media/{{ a.user.head }}/" alt="">{{ a.user.username }}
+				</div>
+				{{ a.content|safe }}
+				{% endfor %}
+			</div>
+			{% if user.is_anonymous %}
+			<a href="{% url 'userapp:login' %}?next=/book/{{ current_novel.id }}">登录</a>
+			{% else %}
+			<button class="btn btn-info addanswerbtn" role="button">回复</button>
+			<div class="addanswerform" style="display: none;">
+				<form action="{% url 'operateapp:addanswer' t.id %}" method="post">
+					<div class="form-group">
+						{% for msg in messages %}
+						<span class="text-danger">{{ msg }}</span>
+						{% endfor %}
+					</div>
+					{% csrf_token %}
+					{{ af.content }}
+					<button type="submit" class="btn btn-primary btn-block ">提交</button>
+				</form>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+	{% endfor %}
+</div>
+<script type="text/javascript">
+	let addanswerbtn=document.getElementsByClassName("addanswerbtn")
+	for(let i=0;i<addanswerbtn.length;i++){
+		addanswerbtn[i].onclick=function(){
+		        addanswerbtn[i].style.display='none';
+				addanswerbtn[i].nextElementSibling.style.display = "block";
+		}
+	}
+	
+</script>

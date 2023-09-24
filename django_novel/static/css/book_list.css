@@ -1,0 +1,109 @@
+/* 项目公共样式 */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.clear {
+	clear: both;
+}
+
+ul,
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+em,
+i {
+	font-style: normal;
+}
+
+b,
+strong {
+	font-weight: normal;
+}
+
+.w100 {
+	width: 100%;
+}
+
+.w70 {
+	width: 70%;
+}
+
+.w60 {
+	width: 60%;
+}
+
+.w50 {
+	width: 50%;
+}
+
+.w40 {
+	width: 40%;
+}
+
+.w20 {
+	width: 20%;
+}
+
+.w30 {
+	width: 30%;
+}
+
+.w80 {
+	width: 80%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: normal;
+}
+
+.book_list ul li {
+	position: relative;
+	margin-bottom: 20px;
+	background-color: whitesmoke;
+
+}
+
+.book_list .info {
+	margin-left: 170px;
+	padding-top: 10px;
+}
+.book_list .now{
+	margin-top: 80px
+}
+.deletebtn{
+	height: 30px;
+	width: 100px;
+	line-height: 30px;
+	text-align: center;
+	background-color: red;
+	color: white;
+	position: absolute;
+	top:100px;
+	right: 50px;
+	
+}
+.p{
+   font-size: 20px;
+   font-weight: 500;
+}

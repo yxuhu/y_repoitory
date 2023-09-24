@@ -1,0 +1,320 @@
+/* 项目公共样式 */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.clear {
+	clear: both;
+}
+
+ul,
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+em,
+i {
+	font-style: normal;
+}
+
+b,
+strong {
+	font-weight: normal;
+}
+
+.w100 {
+	width: 100%;
+}
+
+.w70 {
+	width: 70%;
+}
+
+.w60 {
+	width: 60%;
+}
+
+.w50 {
+	width: 50%;
+}
+
+.w40 {
+	width: 40%;
+}
+
+.w20 {
+	width: 20%;
+}
+
+.w30 {
+	width: 30%;
+}
+
+.w80 {
+	width: 80%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: normal;
+}
+
+/* first-section */
+.first-section {
+	width: 1200px;
+	margin: 0 auto;
+	margin-top: 5px;
+}
+
+.first-section-left {
+	width: 1000px;
+}
+
+.first-section-right {
+	width: 200px;
+}
+
+
+.img-name {
+	float: left;
+}
+
+.top-right {
+	float: left;
+	width: 50%;
+	margin-left: 40px;
+}
+
+.first-title {
+	display: block;
+	font-size: 20px;
+	color: #1B2641;
+	padding: 0 20px 0;
+	margin-bottom: 10px;
+	margin-left: -15px;
+}
+
+.top-right .first-author a {
+	margin: 20px 0;
+	font-size: 14px;
+	color: #7D879F;
+}
+
+.top-right .first-des {
+	font-size: 12px;
+	color: #7D879F;
+	line-height: 20px;
+	padding: 0 20px 0;
+}
+
+.top-right .img_list img {
+	width: 90px;
+	height: 115px;
+	margin-left: 25px;
+	margin-top: 20px;
+}
+
+.first-section-right .commonTitle {
+	display: block;
+	height: 60px;
+	line-height: 60px;
+	color: #1B2641;
+	font-size: 20px;
+	padding-left: 15px;
+	border-bottom: 1px solid #e7e7e7;
+}
+
+.first-section-right .book_list {
+	padding-left: 15px;
+}
+
+.first-section-right .book_list li {
+	margin-bottom: 15.5px
+}
+
+ul,
+ol,
+li {
+	list-style: none;
+}
+
+/* 抗击疫情的图的设计 */
+.Adver-board {
+	width: 1200px;
+	height: 217px;
+	margin: 25px 0;
+}
+
+/* second-section */
+.second-section {}
+
+.second-section .common-section-title {
+	height: 60px;
+	line-height: 60px;
+	color: #1B2641;
+	font-size: 20px;
+
+}
+
+.second-section-booklist {
+	width: 1000px;
+}
+
+.second-section-booklist ul {
+	overflow: hidden;
+	list-style: none;
+}
+
+.second-section-booklist ul li {
+	float: left;
+	margin: 20px 34.2px 10px;
+	display: list-item;
+	text-align: -webkit-match-parent;
+}
+
+.second-section-booklist ul li .Recommend-book-cover {
+	display: block;
+	width: 377px;
+}
+
+.commom-description {
+	display: block;
+	cursor: pointer;
+}
+
+.commom-description .Scover {
+	float: left;
+	position: relative;
+	margin-right: 15px;
+}
+
+a {
+	text-decoration: none;
+	color: #555;
+}
+.titleSize{
+	display: block;
+	margin-left: 20px;
+}
+
+.midImageSize {
+	width: 107px;
+	height: 138px;
+	-webkit-box-shadow: 3px 3px 3px #7d879f;
+	-moz-box-shadow: 3px 3px 3px #7D879F;
+	box-shadow: 3px 3px 3px #7d879f;
+}
+
+.commom-description .des-right {
+	overflow: hidden;
+
+}
+
+.commom-description .des-right .title {
+	display: block;
+	width: 1000px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.booktitleSize {
+	font-size: 16px;
+}
+
+.commom-description .des-right .d-author {
+	margin: 10px 0;
+}
+
+.listcolor {
+	color: #7D879F;
+}
+
+.commom-description .des-right .d-author a {
+	display: inline-block;
+	color: #7D879F;
+	font-size: 12px;
+}
+
+.commom-description .des-right .d-author img {
+	width: 14px;
+	height: 14px;
+	vertical-align: middle;
+	margin-top: -3px;
+}
+
+.commom-description .des-right .d-author i {
+	margin: 0 3px;
+}
+
+i {
+	font-style: normal;
+}
+
+.commom-description .des-right .d-author a {
+	display: inline-block;
+	color: #7D879F;
+	font-size: 12px;
+}
+
+.bottom-list {
+	display: inline-block;
+}
+
+.bottom-list a {
+	text-decoration: none;
+}
+
+.second-section-bottom {
+	border-top: 1px solid #e7e7e7;
+}
+
+.second-section-bottom ul li {
+	margin: 15px 34.2px;
+	width: 228.5px;
+	float: left;
+	list-style: none;
+}
+.second-section-bottom ul li p {
+    display: block;
+    width: 100%;
+    height: 19px;
+    overflow: hidden;
+}
+.authorSize {
+    font-size: 14px;
+}
+.second-section-bottom ul li p .type {
+    float: left;
+    position: relative;
+    margin-right: 5px;
+}
+.second-section-bottom ul li p a {
+    display: inline-block;
+	text-decoration: none;
+}
+.listcolor {
+    color: #7D879F;
+}
+.second-section-bottom ul li p .h-des {
+    overflow: hidden;
+    width: 60%;
+}

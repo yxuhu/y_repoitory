@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Online-书籍的详情页
+{% endblock %}
+
+
+{% block lib %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/book.css' %}" />
+<script src="/static/ueditor/ueditor.config.js"></script>
+<script src="/static/ueditor/ueditor.all.min.js"></script>
+{% endblock %}
+{% block main %}
+<div class='first-section'>
+	<div class="first-section-left left">
+		<div class="first-top">
+			<img src="/media/{{ current_novel.img }}" class="img-name" alt="">
+			<div class="top-right ">
+				<a href="{% url 'mainapp:book' current_novel.id  %}" class="first-title">{{current_novel.name}}</a>
+				<p class="first-author">
+					<a href="#"><span><img src="{% static 'img/home-icon-author.png' %}"
+								alt="">{{ current_novel.author }}</span></a><i>|</i><a
+						href="#"><span>{{ current_novel.tag }}</span></a>
+					<i>|</i>
+					{% if current_novel.status == '0' %}
+					<a href=""><span>已完结</span></a>
+					{% else %}
+					<a href=""><span>连载中</span></a>
+					{% endif %}
+					<i>|</i>
+					<a href="">{{ current_novel.counter }}次浏览</a>
+				</p>
+				<p class="first-des">
+					{%  autoescape off  %}
+					{{ current_novel.info }}
+					{%  endautoescape %}
+				</p>
+				{% if has_last %}
+				<span>最新更新:</span><span> </span><a
+					href=""><span>第{{current_novel.novel.last.num}}章:{{ current_novel.novel.last.name }}
+						{{ current_novel.novel.last.create_time }} </span></a>
+				<p class="first-des">
+					{%  autoescape off  %}
+					{{ current_novel_chapter_content }}
+					{%  endautoescape %}
+				</p>
+				{% else %}
+				<p>暂无最近更新</p>
+				{% endif %}
+				
+				{% if has_collect %}
+				<a href="#" id="book">√</a>
+				{% else %}
+				{% if user.is_authenticated %}
+				<a href="#" id="book">加入书架</a>
+				{% else %}
+				<a href="{% url 'userapp:login' %}?next=/book/{{ current_novel.id }}" id="book">加入书架</a>
+				{% endif %}
+				{% endif %}
+			</div>
+			<div class="clear"></div>
+			<div class="tips">
+				<i>*</i><span>注：《{{current_novel.name}}》为网站作者“{{ current_novel. }}”所著虚构作品，不涉及任何真实人物、事件等，请勿将杜撰作品与现实挂钩。盒子小说支持第三方腾讯QQ一键<br>登录，实现极简登陆体验。登陆后可发言、投票、打赏等。</span>
+			</div>
+		</div>
+		<script type="text/javascript">
+			let bookbtn = document.getElementById("book")
+			bookbtn.onclick = function() {
+				$.ajax({
+					url: '/operateapp/collect/{{ current_novel.id }}',
+					success: function(data) {
+						if (data.status) {
+							if (data.state) {
+								bookbtn.innerText = '√'
+							} else {
+								bookbtn.innerText = '加入书架'
+							}
+						}
+
+					},
+					failed: function(error) {
+						console.log(error, '44444444');
+					}
+				})
+
+			}
+		</script>
+
+	</div>
+	<div class="first-section-right right">
+		<p class="commonTitle">本周强推</p>
+		<ul class="book_list">
+			{% for nl in novel_list  %}
+			<li>
+				<a href="{% url 'mainapp:book' nl.id  %}"><span>[{{ nl.tag }}]</span></a>
+				<a href="{% url 'mainapp:book' nl.id  %}"><span>{{ nl.name }}</span></a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="clear"></div>
+	
+</div>
+<div class="second-section">
+	<div class="button_list ">
+	<button type="button" class="btn btn-default">作品目录</button>
+	<button type="button" class="btn btn-default">讨论组</button>
+	</div>
+	<br>
+	<!-- 评论区的实现 -->
+	<div class="talking active" id="talk" style="display: none;">
+		{% include 'mine/talking.html' %}
+	</div>
+	<!-- 小说目录的实现 -->
+	<div class="chapter_list" id="chapter" >
+	{% include 'mine/chapter_list.html' %}
+	</div>
+</div>
+<script type="text/javascript">
+    let talk=document.getElementById("talk");
+	let chapter=document.getElementById('chapter');
+	let buttons =document.getElementsByClassName("btn-default");
+	console.log(buttons,typeof(buttons))
+	for(let i=0;i<buttons.length;i++){
+		
+		buttons[i].onclick=function(){
+			if(i == 1){				
+			talk.style.display='none';
+			chapter.style.display='block';
+			}
+			else{
+				chapter.style.display='none';
+				talk.style.display='block';
+			}
+		}
+		
+	}
+	
+</script>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Online-热门
+{% endblock %}
+
+
+{% block lib %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/hot.css' %}" />
+{% endblock %}
+{% block main %}
+<div class="title">
+	<span>热门排行榜:</span>
+</div>
+<div class="hot">
+	<div>
+		<ul>
+			{% for b in current_page_books %}
+			<li>
+				<a href="{% url 'mainapp:book' b.id  %}"><img src="/media/{{ b.img }}" alt="" class="left img-thumbnail" style="height: 200px;"></a>
+				<div class="info" class="right">
+					<a href="{% url 'mainapp:book' b.id  %}"><p>{{ b.name }}</p></a>
+					<p>
+						<a href=""><img src="{% static 'img/home-icon-author.png' %}" alt="" ></a>
+						<i>|</i>
+						<a href="">{{ b.author }}</a>
+						<i>|</i>
+						<a href="">{{ b.tag }}</a>
+						<i>|</i>
+						{% if b.status == '0' %}
+						<a href="">已完结</a>
+						{% else %}
+						<a href="">连载中</a>
+						{% endif %}
+						<i>|</i>
+						<a href="">{{ b.counter }}次浏览</a>
+					</p>
+					<p class="now">最近阅读</p>
+					{% if b.novel.last %}
+					<p><span>最近更新:第{{b.novel.last.num}}章:{{ b.novel.last.name }} 时间:{{ b.novel.last.create_time }} </span></p>
+					{% else %}
+					<p>暂无最近更新</p>
+					{% endif %}
+				</div>
+				<div class="clear"></div>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	
+	<div class="d1">
+		<nav aria-label="Page navigation">
+		  <ul class="pagination">
+		      
+				  {% if current_page_books.has_previous %}
+				  		   
+				  	<li>
+				  	  <a href="{% url 'mainapp:hot' %}?page_num={{ current_page_books.previous_page_number }}" aria-label="Previous">
+				  	    <span aria-hidden="true">&laquo;</span>
+				  	  </a>
+				  	</li>
+				  	
+				  	{% endif %}
+				   
+				  
+				    {% for num in current_page_books.paginator.page_range %}
+				  <li class="l1"><a href="{% url 'mainapp:hot' %}?page_num={{ num }}">{{ num }}</a></li>
+				    {% endfor %}
+				  		
+				  	{% if current_page_books.has_next %}
+				  			   
+				  	<li>
+				  	  <a href="{% url 'mainapp:hot' %}?page_num={{ current_page_books.next_page_number }}" aria-label="Previous">
+				  		<span aria-hidden="true">&raquo;</span>
+				  	  </a>
+				  	</li>
+				  					
+				  	{% endif %}
+			
+			   
+		
+		  </ul>
+		</nav>
+	</div>
+	
+</div>
+
+
+
+
+{% endblock %}

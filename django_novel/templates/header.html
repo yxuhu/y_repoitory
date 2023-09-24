@@ -1,0 +1,57 @@
+{% load static %}
+
+
+<div class="header">
+	<div class="widthWrap">
+		<div class="header-top ">
+			<!-- logo -->
+			<a href="/" class="head-left left">
+				<img src="{% static 'img/logo.png' %}" alt="">
+			</a>
+			{% if  user.is_anonymous %}
+			<a href="{% url 'userapp:login' %}" class="right">请登录</a>
+			{% else %}
+		
+			<div class="dropdown right">
+				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="true">
+					{{ user.username }}
+				</button>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					<li><a href="{% url 'userapp:book_list' %}">我的书架</a></li>
+					<li><a href="{% url 'userapp:logout' %}">退出登录</a></li>
+					<li><a href="{% url 'userapp:change' %}">修改个人信息</a></li>
+				</ul>
+			</div>
+			<!-- 头像 -->
+			<div style="float: right;" ><img style="height: 35px; width: 35px; margin-right: 5px;" class="img-circle" src="/media/{{ user.head }}" alt=""></div>
+			{% endif %}
+			</ul>
+		</div>
+
+	</div>
+	<div class="clear"></div>
+	<div class="navul">
+		<div class="widthWrap">
+			<ul class="h-nav">
+				<li>
+					<a href="{% url 'mainapp:index' %}">
+						<span>首页</span>
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'mainapp:hot' %}">
+						<span>热门</span>
+					</a>
+				</li>
+				<li>
+					<a>
+						<span>手机版</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="clear"></div>
+	</div>
+
+</div>

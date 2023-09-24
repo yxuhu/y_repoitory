@@ -1,0 +1,226 @@
+/* 项目公共样式 */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.clear {
+	clear: both;
+}
+
+ul,
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+em,
+i {
+	font-style: normal;
+}
+
+b,
+strong {
+	font-weight: normal;
+}
+
+.w100 {
+	width: 100%;
+}
+
+.w70 {
+	width: 70%;
+}
+
+.w60 {
+	width: 60%;
+}
+
+.w50 {
+	width: 50%;
+}
+
+.w40 {
+	width: 40%;
+}
+
+.w20 {
+	width: 20%;
+}
+
+.w30 {
+	width: 30%;
+}
+
+.w80 {
+	width: 80%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: normal;
+}
+
+
+/* header */
+.header {
+	width: 100%;
+}
+
+/* header-top */
+.header .widthWrap {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.header .header-top {
+	height: 70px;
+	line-height: 70px;
+}
+
+/* 导航栏  navul */
+.header .navul .h-nav {
+	float: left;
+}
+
+.header .navul .h-nav li {
+	float: left;
+}
+
+.header .navul {
+	height: 53px;
+	background-color: #3cabdb;
+}
+
+.header .navul .h-nav li a {
+	width: 140px;
+	height: 53px;
+	display: block;
+	line-height: 53px;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	font-size: 14px;
+	padding-top: 3px;
+}
+
+.header .navul .h-nav li {
+	height: 53px;
+}
+
+.header .navul .h-nav li :hover {
+	background-color: #1B6D85;
+}
+
+.header .header-top .head-right {
+	width: 65%;
+	text-align: right;
+	overflow: hidden;
+}
+
+.header .header-top .mtop {
+	height: 45px;
+	margin-top: 12.5px;
+}
+
+.fr {
+	float: right;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.header .header-top .head-right li {
+	float: right;
+}
+
+/* .container */
+
+
+/* footer */
+
+footer {
+	margin-top: 20px;
+}
+
+footer {
+	background-color: #797979;
+	color: #fff;
+	font-size: 14px;
+	width: 100%;
+}
+
+header,
+footer {
+	margin: 0;
+	padding: 0;
+}
+
+footer {
+	display: block;
+}
+
+footer .footer-nav {
+	width: 100%;
+}
+
+footer .footer-nav .footerNav-list {
+	padding: 20px;
+	background-color: #797979;
+	margin-left: 280px ;
+}
+
+footer .footer-nav .footerNav-list span,
+footer .footer-nav .footerNav-list a {
+	display: inline-block;
+	margin: 5px 10px;
+	white-space: nowrap;
+}
+
+footer a {
+	color: #fff;
+	font-size: 14px;
+}
+
+footer .keepRecord {
+	width: 100%;
+	background-color: #3D3D3D;
+}
+
+footer .keepRecord .keepRecord-detail {
+	padding: 50px 0;
+	background-color: #3D3D3D;
+}
+
+footer .keepRecord .keepRecord-detail .about-us {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+footer .keepRecord .keepRecord-detail p {
+	text-align: center;
+	line-height: 24px;
+}
+
+footer .keepRecord .keepRecord-detail .publicNum {
+	margin-top: 30px;
+}
